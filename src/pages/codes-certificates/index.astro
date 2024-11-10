@@ -1,0 +1,42 @@
+---
+// Import section components
+import MainLayout from "@/layouts/MainLayout.astro";
+import { SITE } from "@data/constants";
+import MainSection from "@/components/ui/blocks/MainSection.astro";
+import { getSession } from "auth-astro/server";
+import { SignIn, SignOut } from 'auth-astro/components'
+import SignInForm from "@/components/SignInForm.astro";
+import CodesTable from "@/components/CodesTable.astro";
+
+
+const session = await getSession(Astro.request);
+
+const pageTitle: string = `Códigos certificados | ${SITE.title}`;
+const title: string = `Códigos certificados`;
+---
+
+<MainLayout title={pageTitle}>
+    <div>
+
+        {session ? (
+            <CodesTable />
+            <p>Welcome {session.user?.email}</p>
+            <button class="btn" id="signOutButton">
+                <span class="flex gap-2"> Logout </span>
+            </button>
+          ) : (
+            <SignInForm/>
+          )}
+       
+    </div>
+</MainLayout>
+
+<script>
+    const { signOut } = await import("auth-astro/client");
+
+    const signOutButton = document.getElementById("signOutButton");
+    
+    signOutButton?.addEventListener("click", () => {
+        signOut();
+    });
+</script>

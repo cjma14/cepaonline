@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import logoImg from "@images/icon.png";
+
+---
+
+<main
+  class="w-full h-[40rem] flex flex-col items-center justify-center bg-gray-50 sm:px-4"
+>
+  <div class="w-full space-y-6 text-gray-600 sm:max-w-md">
+    <div class="text-center">
+      <div class="flex justify-center mb-5">
+        <Image
+          src={logoImg}
+          alt={'logo cepa'}
+          draggable={"false"}
+          class="w-10"
+        />
+      </div>
+      
+      <div class="mt-5 space-y-2">
+        <h3 class="text-gray-800 text-2xl font-bold sm:text-3xl">
+          Iniciar sesión
+        </h3>
+        <p class="">
+          Para ingresar al modulo debe iniciar sesión
+        </p>
+      </div>
+    </div>
+    <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
+      <div class="">
+        <button
+          id="signInButton"
+          class="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100"
+        >
+          <!-- Comment: Google Icon SVG here -->
+          <img
+            src="https://raw.githubusercontent.com/sidiDev/remote-assets/7cd06bf1d8859c578c2efbfda2c68bd6bedc66d8/google-icon.svg"
+            alt="Google"
+            class="w-5 h-5"
+          />
+          Continuar con google
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const { signIn } = await import("auth-astro/client");
+
+  const signInButton = document.getElementById("signInButton");
+
+  signInButton?.addEventListener("click", () => {
+      signIn("google");
+  });
+  
+</script>

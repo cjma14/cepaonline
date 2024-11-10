@@ -7,6 +7,8 @@ import node from "@astrojs/node";
 
 import db from "@astrojs/db";
 
+import auth from "auth-astro";
+
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
@@ -38,8 +40,9 @@ export default defineConfig({
   }), compressor({
     gzip: false,
     brotli: true
-  }), db()],
-  output: "hybrid",
+  }), db(), 
+  auth()],
+  output: "server",
   experimental: {
     clientPrerender: true,
     directRenderScript: true
