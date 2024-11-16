@@ -154,6 +154,9 @@ div.dt-scroll-body > table.dataTable > thead > tr > td {
   overflow: hidden;
 }
 
+table.dataTable th {
+  background-color: #f6f7f8;
+}
 :root.dark table.dataTable thead > tr > th.dt-orderable-asc:hover, :root.dark table.dataTable thead > tr > th.dt-orderable-desc:hover,
 :root.dark table.dataTable thead > tr > td.dt-orderable-asc:hover,
 :root.dark table.dataTable thead > tr > td.dt-orderable-desc:hover,
@@ -347,7 +350,6 @@ table.dataTable tfoot th {
 table.dataTable > thead > tr > th,
 table.dataTable > thead > tr > td {
   padding: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 table.dataTable > thead > tr > th:active,
 table.dataTable > thead > tr > td:active {
@@ -355,7 +357,6 @@ table.dataTable > thead > tr > td:active {
 }
 table.dataTable > tfoot > tr > th,
 table.dataTable > tfoot > tr > td {
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
   padding: 10px 10px 6px 10px;
 }
 table.dataTable > tbody > tr {
@@ -379,7 +380,7 @@ table.dataTable > tbody > tr.selected a {
 }
 table.dataTable > tbody > tr > th,
 table.dataTable > tbody > tr > td {
-  padding: 8px 10px;
+  padding: 15px 10px;
 }
 table.dataTable.row-border > tbody > tr > *, table.dataTable.display > tbody > tr > * {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -520,6 +521,7 @@ div.dt-container div.dt-layout-row {
   align-items: center;
   width: 100%;
   margin: 0.75em 0;
+  padding: 10px 20px;
 }
 div.dt-container div.dt-layout-row div.dt-layout-cell {
   display: flex;
@@ -597,10 +599,10 @@ div.dt-container .dt-search input {
   margin-left: 3px;
 }
 div.dt-container .dt-input {
-  border: 1px solid #aaa;
+  border: 0;
   border-radius: 3px;
   padding: 5px;
-  background-color: transparent;
+  background-color: #e9e9ed;
   color: inherit;
 }
 div.dt-container select.dt-input {
@@ -668,6 +670,7 @@ div.dt-container .dt-search,
 div.dt-container .dt-info,
 div.dt-container .dt-processing,
 div.dt-container .dt-paging {
+  font-size: 14px;
   color: inherit;
 }
 div.dt-container .dataTables_scroll {
@@ -687,9 +690,7 @@ div.dt-container .dataTables_scroll div.dt-scroll-body > table > tbody > tr > td
   margin: 0 !important;
   padding: 0 !important;
 }
-div.dt-container.dt-empty-footer tbody > tr:last-child > * {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-}
+
 div.dt-container.dt-empty-footer .dt-scroll-body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
@@ -778,4 +779,9 @@ html.dark .dt-container .dt-paging .dt-paging-button:active {
 }
 *[dir=rtl] div.dt-container div.dt-search input {
   margin: 0 3px 0 0;
+}
+
+select {
+  background-image: none;
+  cursor: pointer;
 }

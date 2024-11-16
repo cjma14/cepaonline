@@ -1,9 +1,9 @@
-<style>
-    div.dt-container div.dt-layout-row {
-        margin: 0;
-    }
-</style>
+---
+import { db, Certificate } from "astro:db";
+import CodeModal from "@/components/CodeModal.astro";
 
+const certificates = await db.select().from(Certificate)
+---
 <div class="mx-auto max-w-screen-xl px-4 pt-[5rem] md:px-8">
     <div class="items-start justify-between md:flex">
         <div class="max-w-lg">
@@ -16,67 +16,41 @@
             </p>
         </div>
         <div class="mt-3 md:mt-0">
-            <a
-                href="javascript:void(0)"
-                class="inline-block rounded-lg bg-indigo-600 px-4 py-2 font-medium text-white duration-150 hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
-                >Add member</a
-            >
+            <button
+                type="button"
+                data-hs-overlay="#hs-toggle-between-modals-codes-modal"
+                class="inline-block rounded-lg bg-primary-600 px-4 py-2 font-medium text-white duration-150 hover:bg-primary-500 active:bg-primary-700 md:text-sm"
+                >Agregar código</button>
         </div>
     </div>
+
+    <ul class="grid gird-cols-2">
+        {
+            certificates.map((centrificate) => (<li>{centrificate?.id}</li>))
+        }
+    </ul>
     <div class="mt-12 rounded-lg border shadow-sm">
         <div class="flex flex-col">
             <div class="-m-1.5">
                 <div class="inline-block min-w-full p-1.5 align-middle">
-                    <div
-                        class="overflow-hidden rounded-lg border shadow dark:border-neutral-700 dark:shadow-gray-900"
-                    >
-                        <table
-                            id="myTable"
-                            class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
-                        >
-                            <thead class="bg-gray-50 dark:bg-neutral-700">
+                    <div class="overflow-hidden rounded-lg shadow">
+                        <table id="myTable" class="min-w-full">
+                            <thead>
                                 <tr>
-                                    <th
-                                        scope="col"
-                                        class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-400"
-                                        >Name</th
-                                    >
-                                    <th
-                                        scope="col"
-                                        class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-400"
-                                        >Age</th
-                                    >
-                                    <th
-                                        scope="col"
-                                        class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-400"
-                                        >Address</th
-                                    >
-                                    <th
-                                        scope="col"
-                                        class="px-6 py-3 text-end text-xs font-medium uppercase text-gray-500 dark:text-neutral-400"
-                                        >Action</th
-                                    >
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody
                                 class="divide-y divide-gray-200 dark:divide-neutral-700"
                             >
                                 <tr>
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-neutral-200"
-                                        >John Brown</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200"
-                                        >45</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200"
-                                        >New York No. 1 Lake Park</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-end text-sm font-medium"
-                                    >
+                                    <td>John Brown</td>
+                                    <td>45</td>
+                                    <td>New York No. 1 Lake Park</td>
+                                    <td>
                                         <button
                                             type="button"
                                             class="hover:text-blue-800 focus:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-primary-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
@@ -86,21 +60,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-neutral-200"
-                                        >Jim Green</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200"
-                                        >27</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200"
-                                        >London No. 1 Lake Park</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-end text-sm font-medium"
-                                    >
+                                    <td>Jim Green</td>
+                                    <td>27</td>
+                                    <td>London No. 1 Lake Park</td>
+                                    <td>
                                         <button
                                             type="button"
                                             class="hover:text-blue-800 focus:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-primary-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
@@ -110,21 +73,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-neutral-200"
-                                        >Joe Black</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200"
-                                        >31</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200"
-                                        >Sidney No. 1 Lake Park</td
-                                    >
-                                    <td
-                                        class="whitespace-nowrap px-6 py-4 text-end text-sm font-medium"
-                                    >
+                                    <td>Joe Black</td>
+                                    <td>31</td>
+                                    <td>Sidney No. 1 Lake Park</td>
+                                    <td>
                                         <button
                                             type="button"
                                             class="hover:text-blue-800 focus:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-primary-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
@@ -140,7 +92,12 @@
         </div>
     </div>
 </div>
-
+<CodeModal/>
+<script>
+    import "@preline/collapse/index.js";
+    import "@preline/overlay/index.js";
+</script>
+  
 <script>
     import DataTable from "datatables.net-dt";
     import "@styles/datatable.css";
