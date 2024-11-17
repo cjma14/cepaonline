@@ -4,10 +4,12 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import { SITE } from "@data/constants";
 import MainSection from "@/components/ui/blocks/MainSection.astro";
 import { getSession } from "auth-astro/server";
-import { SignIn, SignOut } from 'auth-astro/components'
+import { SignIn, SignOut } from "auth-astro/components";
 import SignInForm from "@/components/SignInForm.astro";
-import CodesTable from "@/components/CodesTable.astro";
+import CodesTable from "./CodesTable.astro";
+import { db, Users } from "astro:db";
 
+const usersAllow = await db.select().from(Users);
 
 const session = await getSession(Astro.request);
 
@@ -17,26 +19,40 @@ const title: string = `Códigos certificados`;
 
 <MainLayout title={pageTitle}>
     <div>
-
-        {session ? (
-            <CodesTable />
-            <p>Welcome {session.user?.email}</p>
-            <button class="btn" id="signOutButton">
-                <span class="flex gap-2"> Logout </span>
-            </button>
-          ) : (
-            <SignInForm/>
-          )}
-       
+        {
+            session ? (
+                <>
+                    <CodesTable />
+                   
+                </>
+            ) : (
+                <SignInForm />
+            )
+        }
     </div>
 </MainLayout>
 
 <script>
+    const signOutButton = document.getElementById("signOutButton");
     const { signOut } = await import("auth-astro/client");
 
-    const signOutButton = document.getElementById("signOutButton");
-    
     signOutButton?.addEventListener("click", () => {
         signOut();
     });
+</script>
+<script define:vars={{ session, usersAllow }}>
+    const isUserAllow = () => {
+        return (
+            session &&
+            !!usersAllow.find((user) => user.email == session.user.email)
+        );
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+            if(!isUserAllow()) {
+                signOutButton.click()
+            }
+        },200)
+    })
 </script>

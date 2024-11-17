@@ -15,12 +15,21 @@ const Codes = defineTable({
     id: column.number({ primaryKey: true }),
     certificate_id: column.number({ references: () => Certificate.columns.id }),
     name: column.text(),
+    deleted_at: column.date({ optional: true })
+  }
+})
+
+const Users = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    email: column.text(),
   }
 })
 
 export default defineDb({
   tables: {
     Certificate,
-    Codes
+    Codes,
+    Users
   }
 });

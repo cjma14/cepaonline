@@ -1,0 +1,173 @@
+---
+import { GET } from "@api/codes-certificates/get-certificates.json";
+import DOMPurify from "dompurify";
+const config = {
+  id: "hs-toggle-between-modals-codes-modal", // Modal IDENTIFIER
+  title: "Formulario de código", // Main HEADING
+};
+
+let response = await GET(Astro);
+const certificates = await response.json();
+---
+
+<div
+  id={config.id}
+  class="hs-overlay [--overlay-backdrop:static]  pointer-events-none fixed start-0 top-0 z-[70] hidden size-full overflow-y-auto overflow-x-hidden"
+>
+  <div
+    class="m-3 mt-0 flex min-h-[calc(100%-20rem)] items-center opacity-0 transition-all ease-out hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 sm:mx-auto md:mx-auto md:w-full md:max-w-2xl"
+  >
+    <div
+      class="pointer-events-auto flex flex-col rounded-xl border bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-neutral-700/70"
+    >
+      <div
+        class="flex items-center justify-between border-b px-4 py-3 dark:border-neutral-700"
+      >
+        <h3
+          id="hs-medium-modal-label"
+          class="font-bold text-gray-800 dark:text-white"
+        >
+          {config.title}
+        </h3>
+        <button
+          type="button"
+          class="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-600 dark:focus:bg-neutral-600"
+          aria-label="Close"
+          data-hs-overlay="#hs-toggle-between-modals-codes-modal"
+        >
+          <span class="sr-only">Close</span>
+          <svg
+            class="size-4 shrink-0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- form -->
+      <form method="POST" id="formCode">
+        <input type="text" hidden name="id" id="code-id">
+        <div class="w-[93vw] overflow-y-auto p-4 md:w-[40rem]">
+          <div class="grid grid-cols-1 gap-4">
+            <select
+              id="code-select"
+              name="certificates_id"
+              class="focus:border-blue-500 focus:ring-blue-500 block w-full rounded-lg border-gray-200 px-4 py-3 pe-9 text-sm disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            >
+              <option selected="" value="">Seleccionar curso</option>
+              {
+                certificates.data.map((centrificate) => (
+                  <option value={centrificate?.id}>{centrificate?.name}</option>
+                ))
+              }
+            </select>
+            <div>
+              <input
+                required
+                type="text"
+                name="code"
+                id="code-input"
+                class="block w-full rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-neutral-200 focus:outline-none focus:ring focus:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-700/30 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:ring-1"
+                placeholder="Ingresar código"
+                maxlength="5"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-neutral-700"
+        >
+          <button
+            id="cancel"
+            type="button"
+            class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+            data-hs-overlay="#hs-toggle-between-modals-codes-modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            data-hs-overlay="#hs-toggle-between-modals-codes-modal"
+            class="inline-block rounded-lg bg-primary-600 px-4 py-2 font-medium text-white duration-150 hover:bg-primary-500 active:bg-primary-700 md:text-sm"
+            >Guardar código</button
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  import DOMPurify from "dompurify";
+
+  const form = document.querySelector("#formCode") as HTMLFormElement;
+  const cancelButton = document.querySelector("#cancel") as HTMLElement;
+
+  //functions
+
+  const mapdata = (formObject) => {
+    return {
+      idCode: DOMPurify.sanitize(formObject?.id as string),
+      certificate_id: DOMPurify.sanitize(formObject?.certificates_id as string),
+      name: DOMPurify.sanitize(formObject?.code as string),
+    }
+  }
+
+  const update = (data) => {
+    fetch("./api/codes-certificates/update.json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      form.reset();
+      location.reload()
+      console.log(response);
+    });
+  }
+
+  const save = (data) => {
+    fetch("./api/codes-certificates/store.json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      form.reset();
+      location.reload()
+      console.log(response);
+    });
+  }
+
+  cancelButton.addEventListener("click", () => {
+    form.reset();
+  })
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formObject = Object.fromEntries(new FormData(form));
+
+    const mapData =  mapdata(formObject);
+
+    if(mapData.idCode) {
+      update(mapData)
+    } else {
+      save(mapData)
+    }
+
+  });
+
+</script>

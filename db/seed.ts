@@ -1,4 +1,4 @@
-import { db, Certificate } from 'astro:db';
+import { db, Certificate, Users } from 'astro:db';
 
 // https://astro.build/db/seed
 export default async function seed() {
@@ -43,5 +43,11 @@ export default async function seed() {
 			name: "Diplomado en Evaluación Neuropsicológica - Programa de estudio con una duración de 160 horas pedagógicas"
 		},
 		
+	])
+
+	await db.insert(Users).values([
+		{
+			email: "moralesallendi.cj@gmail.com"
+		}
 	])
 }
