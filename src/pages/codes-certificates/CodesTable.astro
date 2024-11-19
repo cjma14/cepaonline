@@ -4,7 +4,7 @@ import CodeModal from "./CodeModal.astro";
 import { getSession } from "auth-astro/server";
 import { sql } from "astro:db";
 import { isNull } from "astro:db";
-import { GET } from "@api/codes-certificates/get-codes.json";
+import { GET } from "@api/codes-certificates/get-codes-all.json";
 
 const session = await getSession(Astro.request);
 
@@ -161,7 +161,6 @@ const codes = await response.json();
             },
         }).then((response) => {
             location.reload();
-            console.log(response);
         });
     };
 

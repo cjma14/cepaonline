@@ -248,6 +248,19 @@ export const Icons = {
     viewBox: "0 0 511.89355 512.07239",
     fill: "currentColor",
   },
+  file: {
+    paths: [
+      {
+        d: "M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z",
+      },
+    ],
+    class:
+      "w-4.5 h-4.5 transition flex-shrink-0 text-neutral-700 duration-300 group-hover:-translate-y-1",
+    width: 24,
+    height: 24,
+    viewBox: "0 -960 960 960",
+    fill: "currentColor",
+  },
   arrowRightStatic: {
     paths: [
       {

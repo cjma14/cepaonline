@@ -86,73 +86,112 @@ const title: string = `Certificación oficial en la batería psicopedagógica TB
 
 </MainLayout>
 <script>
-    import tbaCertificates from "@data/codes-certificates/tba-certificates.json";
+    import DOMPurify from "dompurify";
+    import coursesDiplomas from "@data/codes-certificates/courses-diplomas.json";
+    import { log } from "node_modules/astro/dist/core/logger/core";
 
-    const formSearch = document.querySelector("#form-search")
-    const inputSerach =(document.querySelector("#search-code")  as HTMLInputElement)
-    const notFoundSection = document.querySelector("#not-found")
-    const codeSuccessSection = document.querySelector("#code-success")
-    const errorLabel = document.querySelector("#error-label")
-
-    formSearch.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const searchCodeValue = inputSerach.value 
-        inputSerach.value = "";
-
-        if(isInvalidFormat(searchCodeValue)) {
-            return
-        }
-
-        const certificateFound = findCode(searchCodeValue)
-
-        if(!certificateFound) {
-            setCodeNotFound(searchCodeValue)
-        } else {
-            setCodeSuccess(searchCodeValue, certificateFound)
-        }
-    })
-
+    const formSearch = document.querySelector("#form-search");
+    const inputSerach = document.querySelector(
+        "#search-code",
+    ) as HTMLInputElement;
+    const notFoundSection = document.querySelector("#not-found");
+    const codeSuccessSection = document.querySelector("#code-success");
+    const errorLabel = document.querySelector("#error-label");
 
     const isInvalidFormat = (searchCodeValue) => {
         const regex = /^[a-zA-Z0-9]{3}-[a-zA-Z0-9]$/;
 
-        if(!regex.test(searchCodeValue)) {
-            errorLabel.innerHTML = " El código que ingresó no cumple con el formato solicitado. Rectifique e intente nuevamente."
-            return true
+        if (!regex.test(searchCodeValue)) {
+            errorLabel.innerHTML =
+                "El código que ingresó no cumple con el formato solicitado. Rectifique e intente nuevamente.";
+            return true;
         }
-        errorLabel.innerHTML = ""
-        return false
-    }
+        errorLabel.innerHTML = "";
+        return false;
+    };
 
-    const findCode = (searchCodeValue) => {
-        return tbaCertificates.certificates.find((certificate) => certificate.codes.includes(searchCodeValue))
-    }
+    const getQueryParams = (search) => {
+        return new URLSearchParams({ search }).toString();
+    };
+
+    const findCode = async (searchCodeValue) => {
+
+        const url = `./api/codes-certificates/get-codes-tba.json?${getQueryParams(searchCodeValue)}`;
+
+        try {
+            const request = await fetch(url, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+            });
+
+            // 3. Check for errors in the request
+            if (!request.ok) {
+                throw new Error(`HTTP error! status: ${request.status}`);
+            }
+
+            // 4. Parse JSON response (assuming successful fetch)
+            const response = await request.json();
+
+            // 5. Check if the response data has codes (length > 0)
+            if(response.data.length > 0) {
+                console.log(response.data[0].Certificate.name);
+                return response.data[0].Certificate.name;
+            }
+
+            return false
+
+        } catch (error) {
+            // 6. Handle errors
+            console.error("Error fetching codes:", error);
+            return false; // Or throw the error for further handling
+        }
+    };
 
     const setCodeNotFound = (searchCodeValue) => {
-       
-        notFoundSection.classList.remove(...['hidden'])
-        codeSuccessSection.classList.add(...["opacity-0","hidden"])
+        notFoundSection.classList.remove(...["hidden"]);
+        codeSuccessSection.classList.add(...["opacity-0", "hidden"]);
 
         setTimeout(() => {
-            notFoundSection.classList.remove(...['opacity-0'])
-            notFoundSection.classList.add('opacity-100')
-        }, 100)
-        
-        notFoundSection.querySelector("#code").innerHTML = searchCodeValue
-    }
+            notFoundSection.classList.remove(...["opacity-0"]);
+            notFoundSection.classList.add("opacity-100");
+        }, 100);
+
+        notFoundSection.querySelector("#code").innerHTML = searchCodeValue;
+    };
 
     const setCodeSuccess = (searchCodeValue, certificateFound) => {
-
-        codeSuccessSection.classList.remove(...['hidden'])
-        notFoundSection.classList.add(...["opacity-0","hidden"])
+        codeSuccessSection.classList.remove(...["hidden"]);
+        notFoundSection.classList.add(...["opacity-0", "hidden"]);
 
         setTimeout(() => {
-            codeSuccessSection.classList.remove(...['opacity-0'])
-            codeSuccessSection.classList.add('opacity-100')
-        }, 100)
-        
-        codeSuccessSection.querySelector("#code").innerHTML = searchCodeValue
-        codeSuccessSection.querySelector("#course").innerHTML = certificateFound.title
-    }
+            codeSuccessSection.classList.remove(...["opacity-0"]);
+            codeSuccessSection.classList.add("opacity-100");
+        }, 100);
 
+        codeSuccessSection.querySelector("#code").innerHTML = searchCodeValue;
+        codeSuccessSection.querySelector("#course").innerHTML = certificateFound;
+    };
+
+    formSearch.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const searchCodeValue = DOMPurify.sanitize(inputSerach.value);
+        inputSerach.value = "";
+
+        if (isInvalidFormat(searchCodeValue)) {
+            return;
+        }
+
+        const certificateFound = await findCode(searchCodeValue);
+
+        if (!certificateFound) {
+            setCodeNotFound(searchCodeValue);
+        } else {
+            setCodeSuccess(searchCodeValue, certificateFound);
+        }
+    });
+
+   
 </script>

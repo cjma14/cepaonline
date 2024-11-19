@@ -42,6 +42,9 @@ export default async function seed() {
 		{
 			name: "Diplomado en Evaluación Neuropsicológica - Programa de estudio con una duración de 160 horas pedagógicas"
 		},
+		{
+			name: "Certificación oficial en la batería psicopedagógica TBA (Test Básico de Aprendizaje)"
+		},
 		
 	])
 

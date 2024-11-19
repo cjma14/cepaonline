@@ -11,6 +11,7 @@ import LeftSection from "@/components/ui/blocks/LeftSection.astro";
 import PricingSection from "@components/sections/pricing/PricingSection.astro";
 import pricing from "@data/pricing.json";
 import RightSection from "@/components/ui/blocks/RightSection.astro";
+import Icon from "@/components/ui/icons/Icon.astro";
 
 const pageTitle: string = `Test Básico de Aprendizaje​​ | ${SITE.title}`;
 const title: string = `Test Básico de Aprendizaje`;
@@ -55,13 +56,15 @@ const title: string = `Test Básico de Aprendizaje`;
       <p
         class="mb-4 max-w-prose text-pretty font-light text-neutral-600 dark:text-neutral-400 sm:text-lg"
       >
-        Nuestra batería se compone por diferentes pruebas, echa un vistazo a alguna de ellas.
+        Nuestra batería se compone por diferentes pruebas, echa un vistazo a
+        alguna de ellas.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-1 md:grid-cols-3 mt-10 gap-y-8">
-
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+    <div class="mt-10 grid gap-y-8 md:grid-cols-1 md:grid-cols-3">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -70,17 +73,22 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TCG-A mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            El desarrollo de la atención a través de la cantidad de atenciones que genera un sujeto por unidad de tiempo.
+            El desarrollo de la atención a través de la cantidad de atenciones
+            que genera un sujeto por unidad de tiempo.
           </p>
         </div>
       </div>
 
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -89,17 +97,23 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TCG-MI mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para codificar, almacenar y recuperar un conjunto de elementos en un tiempo determinado, desde la estructura perceptiva visual y auditiva.
+            La capacidad para codificar, almacenar y recuperar un conjunto de
+            elementos en un tiempo determinado, desde la estructura perceptiva
+            visual y auditiva.
           </p>
         </div>
       </div>
-      
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -108,17 +122,22 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TCG-BPL mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para deducir, inducir, relacionar elementos en espacios determinados y la velocidad de respuesta a problemas lógicos.
+            La capacidad para deducir, inducir, relacionar elementos en espacios
+            determinados y la velocidad de respuesta a problemas lógicos.
           </p>
         </div>
       </div>
-      
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -127,17 +146,22 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TCG-TA mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La velocidad que tiene un sujeto para desarrollar habilidades. Con esta variable se predice la curva de aprendizaje.
+            La velocidad que tiene un sujeto para desarrollar habilidades. Con
+            esta variable se predice la curva de aprendizaje.
           </p>
         </div>
       </div>
-      
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -146,17 +170,24 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TAF-BAM mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para desarrollar conceptos numéricos, formar relaciones concretas y abstractas de cantidades, comprender conceptos probabilísticos y extraer información implícita de problemas de lógica matemática.
+            La capacidad para desarrollar conceptos numéricos, formar relaciones
+            concretas y abstractas de cantidades, comprender conceptos
+            probabilísticos y extraer información implícita de problemas de
+            lógica matemática.
           </p>
         </div>
       </div>
 
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -165,17 +196,22 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TAF-CL mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Correspondencia sonido-letra, conciencia fonológica e identificación de la variación gráfica de la letra.
+            Correspondencia sonido-letra, conciencia fonológica e identificación
+            de la variación gráfica de la letra.
           </p>
         </div>
       </div>
-      
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -184,17 +220,22 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TAF-OV mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para formar imágenes mentales de palabras ortográficamente correctas.
+            La capacidad para formar imágenes mentales de palabras
+            ortográficamente correctas.
           </p>
         </div>
       </div>
 
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -203,17 +244,22 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             TAF-VL mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La cantidad de palabras leídas por unidad de tiempo. La unidad de medida universal es palabras por minuto (p/min).
+            La cantidad de palabras leídas por unidad de tiempo. La unidad de
+            medida universal es palabras por minuto (p/min).
           </p>
         </div>
       </div>
-      
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -222,17 +268,23 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             Escala de Autopercepción del Aprendizaje mide
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La percepción que tiene un individuo sobre su propio proceso de aprendizaje a nivel cognitivo, instruccional, motivacional y afectivo.
+            La percepción que tiene un individuo sobre su propio proceso de
+            aprendizaje a nivel cognitivo, instruccional, motivacional y
+            afectivo.
           </p>
         </div>
       </div>
 
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -241,17 +293,23 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             Reportes e informes
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Con el sistema TBA, podrás obtener informes de avance mediante análisis estadísticos. De esta manera, podrás revisar la efectividad de tu trabajo especializado por periodo de tiempo.
+            Con el sistema TBA, podrás obtener informes de avance mediante
+            análisis estadísticos. De esta manera, podrás revisar la efectividad
+            de tu trabajo especializado por periodo de tiempo.
           </p>
         </div>
       </div>
 
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -260,18 +318,25 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             Diagnosticos DEA
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            TBA responde a los criterios diagnósticos de DEA según el DSM-5 y el Decreto 170 (Chile) al evaluar las siguientes áreas:
-            La discrepancia significativa entre el rendimiento actual en una o más áreas académicas específicas (lectura, escritura o matemáticas) y las capacidades intelectuales generales.
+            TBA responde a los criterios diagnósticos de DEA según el DSM-5 y el
+            Decreto 170 (Chile) al evaluar las siguientes áreas: La discrepancia
+            significativa entre el rendimiento actual en una o más áreas
+            académicas específicas (lectura, escritura o matemáticas) y las
+            capacidades intelectuales generales.
           </p>
         </div>
       </div>
 
-      <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+      <div
+        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+      >
         <div>
           <img
             class="rounded-t-lg"
@@ -280,16 +345,19 @@ const title: string = `Test Básico de Aprendizaje`;
           />
         </div>
         <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             Síntesis psicométrica
           </h5>
-   
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            El sistema TBA permite obtener una síntesis psicométrica considerando el factor cognitivo, lo que permite inferir el nivel de desarrollo intelectual de la persona evaluada.
+            El sistema TBA permite obtener una síntesis psicométrica
+            considerando el factor cognitivo, lo que permite inferir el nivel de
+            desarrollo intelectual de la persona evaluada.
           </p>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -308,6 +376,58 @@ const title: string = `Test Básico de Aprendizaje`;
     imgOne="img/autor.jpeg"
     imgOneAlt="Pablo San Martín Catalá autor del TBA dando una confierencia"
   />
+
+  <!-- The root section of the component -->
+  <section
+    class="mx-auto max-w-[85rem] items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 lg:px-8 lg:py-14 xl:gap-16 2xl:max-w-full"
+  >
+    <!-- The Image component which renders the image -->
+
+    <div
+      class="w-full rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+    >
+      <div class="flex flex-col items-center py-10">
+        <div class="bg-primary-500 rounded-full p-5 mb-5">
+          <Icon name="file" classCustom="text-white w-10 h-10"/>
+        </div>
+
+        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+          Investigacion
+        </h5>
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >San Martin y Carrasco</span
+        >
+        <div class="mt-4 flex md:mt-6">
+          <a
+            download
+            href="/files/San-Martin-y-Carrasco-Investigacion.pdf"
+            class="ms-2 rounded-lg border border-gray-200 bg-primary-500 px-4 py-2 text-sm font-medium text-white hover:bg-primary-400 transition "
+            >Descargar</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- The container for title, subtitle, and optional CTA button -->
+    <div class="mt-4 md:mt-0">
+      <!-- The title of the section -->
+      <h2
+        class="mb-4 text-balance text-4xl font-extrabold tracking-tight text-neutral-800 dark:text-neutral-200"
+      >
+      Fundamentos psicométricos del Test Básico de Aprendizaje
+      </h2>
+      <!-- The subtitle of the section -->
+      <p
+        class="mb-4 max-w-prose text-pretty font-light text-neutral-600 dark:text-neutral-400 sm:text-lg"
+      >
+        Este estudio se enfoca en presentar de manera detallada el desarrollo y
+        las bases científicas del Test Básico de Aprendizaje (TBA), una
+        herramienta de evaluación psicológica diseñada para medir una amplia
+        gama de habilidades cognitivas y de aprendizaje en personas de 6 a 55
+        años.
+      </p>
+    </div>
+  </section>
 
   <PricingSection pricing={pricing} />
 </MainLayout>
