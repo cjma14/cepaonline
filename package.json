@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build --remote",
-    "prod": "node process-html.mjs",
+    "build": "astro check && astro build --remote && node process-html.mjs",
+    "prod": "node dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -38,11 +38,11 @@
     "sharp": "^0.33.4",
     "sharp-ico": "^0.1.5",
     "swiper": "^11.1.12",
-    "tailwindcss": "^3.4.5",
-    "astro-vtbot": "^1.7.27"
+    "tailwindcss": "^3.4.5"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "astro-vtbot": "^1.7.27",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.0",
     "prettier-plugin-tailwindcss": "^0.6.5",
