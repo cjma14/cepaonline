@@ -21,19 +21,10 @@ Página web creada para la institución CEPA.
 
 La arquitectura de la landing page se basa en componentes modulares y reutilizables, lo que facilita su mantenimiento y escalabilidad a medida que el proyecto crezca.
 
-### Metodología BEM para el CSS
-
-Se ha utilizado la metodología BEM para nombrar las clases CSS, lo que ayuda a mantener el código organizado y legible.
-<br/>
-[![Product Name Screen Shot][product-screenshot]](https://github.com/cjma14/landing-test-react/blob/master/public/assets/capture.png)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Contruido con:
 
-* [![Astro][Astro.js]][https://docs.astro.build]
+* [Astro](https://docs.astro.build)
 * [Astro DB](https://docs.astro.build/en/guides/astro-db)
 * [Auth astro](https://docs.astro.build/en/guides/authentication/)
 * [Drizzle](https://orm.drizzle.team/)
@@ -79,10 +70,25 @@ Para su compulación y subida producción simplmente haremos:
   ```sh
   npm run build
  ```
+## Conexión de DB remota
 
  Adicional en caso de realizar cambios a la base de datos se tiene que hacer push de los cambios a producción
-  ```sh
+```sh
   npm run astro db push --remote
+
+ ```
+
+Para poder conectarse a la base de datos remota (En este caso Turso) se tiene que ejecutar el siguiente comando en vez de usar "npm run" usamos "npx".
+  ```sh
+  npx astro dev --remote
+ ```
+
+ ## SSR
+ 
+ Para levantar el SSR de la pagina se necesita ejecutar el siguiente comando. En el comando se tiene que indicar el archivo .env del cual la apliación tomara los datos para la base de datos.
+
+  ```sh
+  node --env-file=.env ./dist/server/entry.mjs
  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -102,51 +108,3 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Correo: cmja.27@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-[product-screenshot]: https://github.com/cjma14/landing-test-react/blob/master/public/assets/capture.png
-[React-url]: https://reactjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAF
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
-
-## Other Common Github Profile Sections
-👩‍💻 I'm currently working on...
-
-🧠 I'm currently learning...
-
-👯‍♀️ I'm looking to collaborate on...
-
-🤔 I'm looking for help with...
-
-💬 Ask me about...
-
-📫 How to reach me...
-
-😄 Pronouns...
-
-⚡️ Fun fact...
-

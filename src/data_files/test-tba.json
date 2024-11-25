@@ -1,0 +1,106 @@
+[
+    {
+        "title": "TCG-A mide",
+        "description": "El desarrollo de la atención a través de la cantidad de atenciones que genera un sujeto por unidad de tiempo.",
+        "img": {
+            "src": "/img/pruebas/B-1-1024x683.png",
+            "alt": "Interfaz de prueba TCG-A"
+        }
+    },
+    {
+        "title": "TCG-MI mide",
+        "description": "La capacidad para codificar, almacenar y recuperar un conjunto de elementos en un tiempo determinado, desde la estructura perceptiva visual y auditiva.",
+        "img": {
+            "src": "/img/pruebas/B-2-1024x683.png",
+            "alt": "Interfaz de prueba TCG-MI"
+        }
+    },
+    {
+        "title": "TCG-BPL mide",
+        "description": "La capacidad para deducir, inducir, relacionar elementos en espacios determinados y la velocidad de respuesta a problemas lógicos.",
+        "img": {
+            "src": "/img/pruebas/B-3-1024x683.png",
+            "alt": "Interfaz de prueba TCG-BPL"
+        }
+    },
+    {
+        "title": "TCG-TA mide",
+        "description": "La velocidad que tiene un sujeto para desarrollar habilidades. Con esta variable se predice la curva de aprendizaje.",
+        "img": {
+            "src": "/img/pruebas/B-4-1024x683.png",
+            "alt": "Interfaz de prueba TCG-TA"
+        }
+    },
+    {
+        "title": "TAF-BAM mide",
+        "description": "La capacidad para desarrollar conceptos numéricos, formar relaciones concretas y abstractas de cantidades, comprender conceptos probabilísticos y extraer información implícita de problemas de lógica matemática.",
+        "img": {
+            "src": "/img/pruebas/B-5-1024x683.png",
+            "alt": "Interfaz de prueba TAF-BAM"
+        }
+    },
+    {
+        "title": "TAF-BALE mide",
+        "description": "Correspondencia sonido-letra, conciencia fonológica e identificación de la variación gráfica de la letra.",
+        "img": {
+            "src": "/img/pruebas/B-6-1024x6833.png",
+            "alt": "Interfaz de prueba TAF-BALE"
+        }
+    },
+    {
+        "title": "TAF-CL mide",
+        "description": "La capacidad para construir significados mediante la decodificación del lenguaje escrito sea literal o implícito.",
+        "img": {
+            "src": "/img/pruebas/B-7-1024x683.png",
+            "alt": "Interfaz de prueba TAF-CL"
+        }
+    },
+    {
+        "title": "TAF-OV mide",
+        "description": "La capacidad para formar imágenes mentales de palabras ortográficamente correctas.",
+        "img": {
+            "src": "/img/pruebas/B-8-1024x683.png",
+            "alt": "Interfaz de prueba TAF-OV"
+        }
+    },
+    {
+        "title": "TAF-VL mide",
+        "description": "La cantidad de palabras leídas por unidad de tiempo. La unidad de medida universal es palabras por minuto (p/min).",
+        "img": {
+            "src": "/img/pruebas/B-10-1024x683.png",
+            "alt": "Interfaz de prueba TAF-VL"
+        }
+    },
+    {
+        "title": "Escala de Autopercepción del Aprendizaje mide",
+        "description": "La percepción que tiene un individuo sobre su propio proceso de aprendizaje a nivel cognitivo, instruccional, motivacional y afectivo.",
+        "img": {
+            "src": "/img/pruebas/B-11-1024x683.png",
+            "alt": "Interfaz de prueba Escala de Autopercepción del Aprendizaje mide del Aprendizaje"
+        }
+    },
+    {
+        "title": "Reportes e informes",
+        "description": "Con el sistema TBA, podrás obtener informes de avance mediante análisis estadísticos. De esta manera, podrás revisar la efectividad de tu trabajo especializado por periodo de tiempo.",
+        "img": {
+            "src": "/img/pruebas/B-13-1-1024x683.png",
+            "alt": "Interfaz de prueba Autopercepción del Aprendizaje"
+        }
+    },
+    {
+        "title": "Diagnosticos DEA",
+        "description": "TBA responde a los criterios diagnósticos de DEA según el DSM-5 y el Decreto 170 (Chile) al evaluar las siguientes áreas: La discrepancia significativa entre el rendimiento actual en una o más áreas académicas específicas (lectura, escritura o matemáticas) y las capacidades intelectuales generales.",
+        "img": {
+            "src": "/img/pruebas/B-15-1024x683.png",
+            "alt": "Interfaz de Diagnost icos DEA"
+        }
+    },
+    {
+        "title": "Síntesis psicométrica",
+        "description": "El sistema TBA permite obtener una síntesis psicométrica considerando el factor cognitivo, lo que permite inferir el nivel de desarrollo intelectual de la persona evaluada.",
+        "img": {
+            "src": "/img/pruebas/B-16-1024x683.png",
+            "alt": "Interfaz de síntesis psicométrica"
+        }
+    }
+]

@@ -12,6 +12,7 @@ import PricingSection from "@components/sections/pricing/PricingSection.astro";
 import pricing from "@data/pricing.json";
 import RightSection from "@/components/ui/blocks/RightSection.astro";
 import Icon from "@/components/ui/icons/Icon.astro";
+import testTba from "@data/test-tba.json";
 
 const pageTitle: string = `Test Básico de Aprendizaje​​ | ${SITE.title}`;
 const title: string = `Test Básico de Aprendizaje`;
@@ -62,302 +63,32 @@ const title: string = `Test Básico de Aprendizaje`;
     </div>
 
     <div class="mt-10 grid gap-y-8 md:grid-cols-1 md:grid-cols-3">
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-1-1024x683.png"
-            alt="Interfaz de prueba TCG-A"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TCG-A mide
-          </h5>
+      {
+        testTba.map((test) => {
+          return (
+            <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+              <div>
+                <img
+                  class="rounded-t-lg"
+                  src={test.img.src}
+                  alt={test.img.alt}
+                />
+              </div>
+              <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {test.title}
+                </h5>
 
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            El desarrollo de la atención a través de la cantidad de atenciones
-            que genera un sujeto por unidad de tiempo.
-          </p>
-        </div>
-      </div>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {test.description}
+                </p>
+              </div>
+            </div>
+          );
+        })
+      }
 
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-2-1024x683.png"
-            alt="Interfaz de prueba TCG-MI"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TCG-MI mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para codificar, almacenar y recuperar un conjunto de
-            elementos en un tiempo determinado, desde la estructura perceptiva
-            visual y auditiva.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-3-1024x683.png"
-            alt="Interfaz de prueba TCG-BPL"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TCG-BPL mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para deducir, inducir, relacionar elementos en espacios
-            determinados y la velocidad de respuesta a problemas lógicos.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-4-1024x683.png"
-            alt="Interfaz de prueba TCG-TA"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TCG-TA mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La velocidad que tiene un sujeto para desarrollar habilidades. Con
-            esta variable se predice la curva de aprendizaje.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-5-1024x683.png"
-            alt="Interfaz de prueba TAF-BAM"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TAF-BAM mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para desarrollar conceptos numéricos, formar relaciones
-            concretas y abstractas de cantidades, comprender conceptos
-            probabilísticos y extraer información implícita de problemas de
-            lógica matemática.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-7-1024x683.png"
-            alt="Interfaz de prueba TAF-CL"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TAF-CL mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Correspondencia sonido-letra, conciencia fonológica e identificación
-            de la variación gráfica de la letra.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-8-1024x683.png"
-            alt="Interfaz de prueba TAF-OV "
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TAF-OV mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La capacidad para formar imágenes mentales de palabras
-            ortográficamente correctas.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-10-1024x683.png"
-            alt="Interfaz de prueba TAF-VL"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            TAF-VL mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La cantidad de palabras leídas por unidad de tiempo. La unidad de
-            medida universal es palabras por minuto (p/min).
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-11-1024x683.png"
-            alt="Interfaz de prueba Escala de Autopercepción del Aprendizaje mide del Aprendizaje"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            Escala de Autopercepción del Aprendizaje mide
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            La percepción que tiene un individuo sobre su propio proceso de
-            aprendizaje a nivel cognitivo, instruccional, motivacional y
-            afectivo.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-13-1-1024x683.png"
-            alt="Interfaz de prueba Autopercepción del Aprendizaje"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            Reportes e informes
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Con el sistema TBA, podrás obtener informes de avance mediante
-            análisis estadísticos. De esta manera, podrás revisar la efectividad
-            de tu trabajo especializado por periodo de tiempo.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-15-1024x683.png"
-            alt="Interfaz de Diagnosticos DEA"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            Diagnosticos DEA
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            TBA responde a los criterios diagnósticos de DEA según el DSM-5 y el
-            Decreto 170 (Chile) al evaluar las siguientes áreas: La discrepancia
-            significativa entre el rendimiento actual en una o más áreas
-            académicas específicas (lectura, escritura o matemáticas) y las
-            capacidades intelectuales generales.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-      >
-        <div>
-          <img
-            class="rounded-t-lg"
-            src="/img/pruebas/B-16-1024x683.png"
-            alt="Interfaz de síntesis psicométrica"
-          />
-        </div>
-        <div class="p-5">
-          <h5
-            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            Síntesis psicométrica
-          </h5>
-
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            El sistema TBA permite obtener una síntesis psicométrica
-            considerando el factor cognitivo, lo que permite inferir el nivel de
-            desarrollo intelectual de la persona evaluada.
-          </p>
-        </div>
-      </div>
+     
     </div>
   </section>
 
@@ -371,7 +102,7 @@ const title: string = `Test Básico de Aprendizaje`;
 
   <RightSection
     title="Pablo San Martín Catalán creador del TBA: La herramienta clave para evaluar el aprendizaje"
-    subTitle="Pablo San Martín Catalán es un Investigador chileno en Ciencias Cognitivas, reconocido a nivel nacional por su invaluable contribución al campo de la evaluación educativa. Su creación, el Test Básico de Aprendizaje (TBA), ha revolucionado la forma en que entendemos y evaluamos las habilidades cognitivas de niños y adolescentes en Chile, convirtiéndose en una herramienta indispensable para docentes, psicopedagogos y profesionales de la educación."
+    subTitle="Pablo Jesús San Martín Catalán es psicopedagogo, bioestadístico y director del Centro de Estudios Psicométricos y del Aprendizaje. Es autor de la hipótesis del intervalo dinámico de los aprendizajes humanos y del modelo de la dinámica cognitiva del aprendizaje humano, contribuyendo al estudio de los procesos de aprendizaje desde perspectivas complejas y dinámicas. También ha desarrollado un enfoque sobre los esquemas de aprendizaje y toma de decisiones, que explora la interrelación de estos sistemas a través de modelos probabilísticos, consolidando su impacto en la psicopedagogía y las ciencias cognitivas."
     single={true}
     imgOne="img/autor.jpeg"
     imgOneAlt="Pablo San Martín Catalá autor del TBA dando una confierencia"
@@ -387,8 +118,8 @@ const title: string = `Test Básico de Aprendizaje`;
       class="w-full rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
     >
       <div class="flex flex-col items-center py-10">
-        <div class="bg-primary-500 rounded-full p-5 mb-5">
-          <Icon name="file" classCustom="text-white w-10 h-10"/>
+        <div class="mb-5 rounded-full bg-primary-500 p-5">
+          <Icon name="file" classCustom="text-white w-10 h-10" />
         </div>
 
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
@@ -401,7 +132,7 @@ const title: string = `Test Básico de Aprendizaje`;
           <a
             download
             href="/files/San-Martin-y-Carrasco-Investigacion.pdf"
-            class="ms-2 rounded-lg border border-gray-200 bg-primary-500 px-4 py-2 text-sm font-medium text-white hover:bg-primary-400 transition "
+            class="ms-2 rounded-lg border border-gray-200 bg-primary-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-400"
             >Descargar</a
           >
         </div>
@@ -414,7 +145,7 @@ const title: string = `Test Básico de Aprendizaje`;
       <h2
         class="mb-4 text-balance text-4xl font-extrabold tracking-tight text-neutral-800 dark:text-neutral-200"
       >
-      Fundamentos psicométricos del Test Básico de Aprendizaje
+        Fundamentos psicométricos del Test Básico de Aprendizaje
       </h2>
       <!-- The subtitle of the section -->
       <p
@@ -422,7 +153,7 @@ const title: string = `Test Básico de Aprendizaje`;
       >
         Este estudio se enfoca en presentar de manera detallada el desarrollo y
         las bases científicas del Test Básico de Aprendizaje (TBA), una
-        herramienta de evaluación psicológica diseñada para medir una amplia
+        herramienta de evaluación psicométrica diseñada para medir una amplia
         gama de habilidades cognitivas y de aprendizaje en personas de 6 a 55
         años.
       </p>

@@ -23,7 +23,7 @@
   "professionalToolbox": {
     "name": "Institucional",
     "description": "Dirigido a instituciones que deseen mejorar su procesos de evaluación psicopedagógica",
-    "price": "350.000",
+    "price": "450.000",
     "cents": ".00",
     "billingFrequency": "CLP / Anual",
     "features": [
@@ -38,9 +38,9 @@
   "certification": {
     "name": "Certificación",
     "description": "Certificación online de la mano del autor de TBA.",
-    "price": "18.000",
+    "price": "20.000",
     "cents": ".00",
-    "billingFrequency": "CLP / Unicos",
+    "billingFrequency": "CLP / Únicos",
     "features": [
       "3 Horas de preparación",
       "Libro del TBA en versión digital"

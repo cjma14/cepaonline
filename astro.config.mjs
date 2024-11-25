@@ -4,9 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 import starlight from "@astrojs/starlight";
 import node from "@astrojs/node";
-
 import db from "@astrojs/db";
-
 import auth from "auth-astro";
 
 // https://astro.build/config
@@ -26,8 +24,10 @@ export default defineConfig({
       prefixDefaultLocale: false
     }
   },
-  prefetch: true,
-  integrations: [tailwind(), sitemap({
+  // prefetch: true,
+  integrations: [
+  tailwind(), 
+  sitemap({
     i18n: {
       defaultLocale: "es",
       // All urls that don't contain `fr` after `https://screwfast.uk/` will be treated as default locale, i.e. `en`
@@ -37,16 +37,18 @@ export default defineConfig({
         en: "en"
       }
     }
-  }), compressor({
-    gzip: false,
-    brotli: true
-  }), db(), 
+  }),
+  // compressor({
+  //   gzip: false,
+  //   brotli: true
+  // }), 
+  db(), 
   auth()],
   output: "server",
-  experimental: {
-    clientPrerender: true,
-    directRenderScript: true
-  },
+  // experimental: {
+  //   clientPrerender: true,
+  //   directRenderScript: true
+  // },
   adapter: node({
     mode: "standalone"
   })

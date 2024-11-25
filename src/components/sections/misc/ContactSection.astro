@@ -15,6 +15,8 @@ const subTitle: string = "Tu futuro comienza aquí. ¡Escríbenos!";
 const formTitle: string =
   "Complete la información del formulario, o contáctenos por nuestros otros canales";
 const formSubTitle: string = "Nuestro tiempo de respuesta es de 24 hrs";
+
+const tokenWeb3forms = "6b4a5bf8-568b-4434-adbc-b933c3631c6f";
 ---
 
 <!-- Contact Us -->
@@ -42,28 +44,38 @@ const formSubTitle: string = "Nuestro tiempo de respuesta es de 24 hrs";
         <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
         <form
           id="formContact"
-          action={`${environment.apiurl}/webpage/send_form_contact`}
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          data-astro-reload
         >
+          <input type="hidden" name="access_key" value={tokenWeb3forms} />
+          <input
+            type="checkbox"
+            class="hidden"
+            style="display:none"
+            name="botcheck"
+          />
           <div class="grid gap-4">
-
-            <div id="success-alert" class="bg-primary-100 border border-primary-400 text-primary-700 px-4 py-3 rounded relative hidden opacity-0 transition-all ease-in-out delay-150 duration-300" role="alert">
+            <div
+              id="success-alert"
+              class="relative hidden rounded border border-primary-400 bg-primary-100 px-4 py-3 text-primary-700 opacity-0 transition-all delay-150 duration-300 ease-in-out"
+              role="alert"
+            >
               <strong class="font-bold">¡Hemos recibido tu solicitud!</strong>
-              <span class="block sm:inline">Gracias por contactarnos. Nos pondremos en contacto a la brevedad.</span>
+              <span class="block sm:inline"
+                >Gracias por contactarnos. Nos pondremos en contacto a la
+                brevedad.</span
+              >
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="grid grid-cols-1 gap-4">
               <TextInput
                 id="hs-firstname-contacts"
-                label="Nombre"
+                label="Nombre completo"
                 name="firstname"
               />
-              <TextInput
-                id="hs-lastname-contacts"
-                label="Apellido"
-                name="lastname"
-              />
             </div>
-            <EmailContactInput id="hs-email-contacts" name="email" />
+            <EmailContactInput id="hs-email-contacts" name="email" label="Correo"/>
 
             <PhoneInput id="hs-phone-number" name="phone" />
 
@@ -103,38 +115,50 @@ const formSubTitle: string = "Nuestro tiempo de respuesta es de 24 hrs";
     </div>
   </div>
 </section>
-<script>
+<script is:inline>
   const form = document.querySelector("#formContact");
   const successAlert = document.querySelector("#success-alert");
-  const sendButtom = document.querySelector("#sendButtom");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formElement = e.currentTarget as HTMLFormElement;
-    const apitUrl = formElement.action;
-    const formData = new FormData(formElement);
-
-    const response = await fetch(apitUrl, {
-      method: "POST",
-      body: formData,
-    });
-    const requestResponse = await response;
-
-    if (requestResponse.status == 200) {
-      formElement.reset();
-      sendButtom.setAttribute("disabled", "true")
-      setCodeSuccess()
-
-    } else {
-      console.error(requestResponse.statusText);
-    }
-  });
-
-  const setCodeSuccess = () => {
+  // functions
+  const sendSuccess = () => {
     successAlert.classList.remove("hidden");
 
     setTimeout(() => {
       successAlert.classList.remove("opacity-0");
     }, 100);
   };
+
+  form.addEventListener(
+    "submit",
+    async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            sendSuccess();
+          } else {
+            console.log(response);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .then(function () {
+          form.reset();
+        });
+    },
+    { once: true },
+  );
 </script>

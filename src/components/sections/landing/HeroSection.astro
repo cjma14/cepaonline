@@ -79,16 +79,15 @@ interface Props {
   <!-- Hero Image Section -->
   <div class="flex w-full">
       <div class="top-12 overflow-hidden">
-	{src && alt &&
-	<Image
-        src={src}
-        alt={alt}
-        class="h-full w-full"
-        draggable={"false"}
-        loading={"eager"}
-        format={"avif"}
-	 />
-	}
+        {src && alt &&
+          <Image
+                src={src}
+                alt={alt}
+                class="h-full w-full"
+                draggable={"false"}
+                loading={"eager"}
+          />
+        }
     </div>
   </div>
 </section>
