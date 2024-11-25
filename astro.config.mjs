@@ -50,6 +50,7 @@ export default defineConfig({
   //   directRenderScript: true
   // },
   adapter: node({
+    host: "0.0.0.0",
     mode: "standalone"
   })
 });

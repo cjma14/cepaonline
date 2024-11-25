@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build --remote && node process-html.mjs",
+    "prod": "node --env-file=.env dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
