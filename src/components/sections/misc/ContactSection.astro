@@ -49,6 +49,8 @@ const tokenWeb3forms = "6b4a5bf8-568b-4434-adbc-b933c3631c6f";
           data-astro-reload
         >
           <input type="hidden" name="access_key" value={tokenWeb3forms} />
+          <input type="hidden" name="from_name" value="CEPA Online">
+          <input type="hidden" name="subject" value="Tienes un nuevo mensaje desde la página web CEPA Online.">
           <input
             type="checkbox"
             class="hidden"
@@ -118,6 +120,7 @@ const tokenWeb3forms = "6b4a5bf8-568b-4434-adbc-b933c3631c6f";
 <script is:inline>
   const form = document.querySelector("#formContact");
   const successAlert = document.querySelector("#success-alert");
+  const sendButtom = document.querySelector("#sendButtom");
 
   // functions
   const sendSuccess = () => {
@@ -132,6 +135,7 @@ const tokenWeb3forms = "6b4a5bf8-568b-4434-adbc-b933c3631c6f";
     "submit",
     async (e) => {
       e.preventDefault();
+      sendButtom.setAttribute("disabled", "")
       const formData = new FormData(form);
       const object = Object.fromEntries(formData);
       const json = JSON.stringify(object);
@@ -147,6 +151,7 @@ const tokenWeb3forms = "6b4a5bf8-568b-4434-adbc-b933c3631c6f";
         .then(async (response) => {
           let json = await response.json();
           if (response.status == 200) {
+            sendButtom.removeAttribute("disabled")
             sendSuccess();
           } else {
             console.log(response);
