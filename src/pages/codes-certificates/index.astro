@@ -21,38 +21,10 @@ const title: string = `Códigos certificados`;
     <div>
         {
             session ? (
-                <>
-                    <CodesTable />
-                   
-                </>
+                <CodesTable />
             ) : (
                 <SignInForm />
             )
         }
     </div>
 </MainLayout>
-
-<script>
-    const signOutButton = document.getElementById("signOutButton");
-    const { signOut } = await import("auth-astro/client");
-
-    signOutButton?.addEventListener("click", () => {
-        signOut();
-    });
-</script>
-<script define:vars={{ session, usersAllow }}>
-    const isUserAllow = () => {
-        return (
-            session &&
-            !!usersAllow.find((user) => user.email == session.user.email)
-        );
-    };
-
-    window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-            if(!isUserAllow()) {
-                signOutButton.click()
-            }
-        },200)
-    })
-</script>

@@ -110,7 +110,6 @@ const certificates = await response.json();
 
   const form = document.querySelector("#formCode") as HTMLFormElement;
   const cancelButton = document.querySelector("#cancel") as HTMLElement;
-
   //functions
 
   const mapdata = (formObject) => {
@@ -149,11 +148,11 @@ const certificates = await response.json();
     });
   }
 
-  cancelButton.addEventListener("click", () => {
+  cancelButton?.addEventListener("click", () => {
     form.reset();
   })
 
-  form.addEventListener("submit", async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formObject = Object.fromEntries(new FormData(form));

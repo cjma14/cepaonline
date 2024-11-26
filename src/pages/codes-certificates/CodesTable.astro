@@ -1,5 +1,5 @@
 ---
-import { db, Codes, Certificate, eq } from "astro:db";
+import { db, Codes, Certificate, eq, Users } from "astro:db";
 import CodeModal from "./CodeModal.astro";
 import { getSession } from "auth-astro/server";
 import { sql } from "astro:db";
@@ -7,101 +7,157 @@ import { isNull } from "astro:db";
 import { GET } from "@api/codes-certificates/get-codes-all.json";
 
 const session = await getSession(Astro.request);
+const usersAllow = await db.select().from(Users);
 
 let response = await GET(Astro);
 const codes = await response.json();
 
+const isUserAllow = () => {
+    return (
+        session && !!usersAllow.find((user) => user.email == session.user.email)
+    );
+};
 ---
 
 <div class="mx-auto mb-20 max-w-screen-xl px-4 pt-[5rem] md:px-8">
-    <div class="items-start justify-between md:flex">
-        <div class="max-w-lg">
-            <h3 class="text-xl font-bold text-gray-800 sm:text-2xl">
-                Listado de códigos de certificados
-            </h3>
-            <p class="mt-2 text-gray-600">
-                Estimado {session.user?.name}, aquí podra vizualizar todos los
-                códigos de los certificados guardados en base de datos.
-            </p>
-        </div>
-        <div class="mt-3 md:mt-0">
-            <astro-add>
-                <button
-                    type="button"
-                    data-hs-overlay="#hs-toggle-between-modals-codes-modal"
-                    class="inline-block rounded-lg bg-primary-600 px-4 py-2 font-medium text-white duration-150 hover:bg-primary-500 active:bg-primary-700 md:text-sm"
-                    >Agregar código</button
-                >
-            </astro-add>
-
-            <button
-                id="signOutButton"
-                type="button"
-                class="inline-block rounded-lg bg-red-600 px-4 py-2 font-medium text-white duration-150 hover:bg-red-500 active:bg-red-700 md:text-sm"
-                >Cerrar sesión</button
-            >
-        </div>
-    </div>
-
-    <div class="mt-12 rounded-lg border shadow-sm">
-        <div class="flex flex-col">
-            <div class="-m-1.5">
-                <div class="inline-block min-w-full p-1.5 align-middle">
-                    <div class="overflow-hidden rounded-lg shadow">
-                        <table id="myTable" class="min-w-full">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="width:60%">Curso</th>
-                                    <th scope="col">Código</th>
-                                    <th scope="col" style="width:25%">Action</th
-                                    >
-                                </tr>
-                            </thead>
-                            <tbody
-                                class="divide-y divide-gray-200 dark:divide-neutral-700"
+    {
+        isUserAllow() ? (
+            <>
+                <div class="items-start justify-between md:flex">
+                    <div class="max-w-lg">
+                        <h3 class="text-xl font-bold text-gray-800 sm:text-2xl">
+                            Listado de códigos de certificados
+                        </h3>
+                        <p class="mt-2 text-gray-600">
+                            Estimado {session.user?.name}, aquí podra vizualizar
+                            todos los códigos de los certificados guardados en
+                            base de datos.
+                        </p>
+                    </div>
+                    <div class="mt-3 md:mt-0">
+                        <astro-add>
+                            <button
+                                type="button"
+                                data-hs-overlay="#hs-toggle-between-modals-codes-modal"
+                                class="inline-block rounded-lg bg-primary-600 px-4 py-2 font-medium text-white duration-150 hover:bg-primary-500 active:bg-primary-700 md:text-sm"
                             >
-                                {
-                                    codes.data.map((code) => (
-                                        <tr>
-                                            <td>{code.Certificate.name}</td>
-                                            <td>{code.Codes.name}</td>
-                                            <td>
-                                                <div class="flex gap-4">
-                                                    <astro-edit
-                                                        data-certificate={code.Certificate.id}
-                                                        data-code={code.Codes.name}
-                                                        data-idcode={code.Codes.id}
-                                                    >
-                                                        <button
-                                                            data-hs-overlay="#hs-toggle-between-modals-codes-modal"
-                                                            type="button"
-                                                            class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-primary-600"
-                                                        >
-                                                            Editar
-                                                        </button>
-                                                    </astro-edit>
+                                Agregar código
+                            </button>
+                        </astro-add>
 
-                                                    <astro-destroy
-                                                        data-idcode={code.Codes.id}>
-                                                        <button
-                                                            type="button"
-                                                            class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-red-600"
-                                                        >
-                                                            Eliminar
-                                                        </button>
-                                                    </astro-destroy>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                        <button
+                            id="signOutButton"
+                            type="button"
+                            class="inline-block rounded-lg bg-red-600 px-4 py-2 font-medium text-white duration-150 hover:bg-red-500 active:bg-red-700 md:text-sm"
+                        >
+                            Cerrar sesión
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="mt-12 rounded-lg border shadow-sm">
+                    <div class="flex flex-col">
+                        <div class="-m-1.5">
+                            <div class="inline-block min-w-full p-1.5 align-middle">
+                                <div class="overflow-hidden rounded-lg shadow">
+                                    <table id="myTable" class="min-w-full">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    scope="col"
+                                                    style="width:60%"
+                                                >
+                                                    Curso
+                                                </th>
+                                                <th scope="col">Código</th>
+                                                <th
+                                                    scope="col"
+                                                    style="width:25%"
+                                                >
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                                            {codes.data.map((code) => (
+                                                <tr>
+                                                    <td>
+                                                        {code.Certificate.name}
+                                                    </td>
+                                                    <td>{code.Codes.name}</td>
+                                                    <td>
+                                                        <div class="flex gap-4">
+                                                            <astro-edit
+                                                                data-certificate={
+                                                                    code
+                                                                        .Certificate
+                                                                        .id
+                                                                }
+                                                                data-code={
+                                                                    code.Codes
+                                                                        .name
+                                                                }
+                                                                data-idcode={
+                                                                    code.Codes
+                                                                        .id
+                                                                }
+                                                            >
+                                                                <button
+                                                                    data-hs-overlay="#hs-toggle-between-modals-codes-modal"
+                                                                    type="button"
+                                                                    class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-primary-600"
+                                                                >
+                                                                    Editar
+                                                                </button>
+                                                            </astro-edit>
+
+                                                            <astro-destroy
+                                                                data-idcode={
+                                                                    code.Codes
+                                                                        .id
+                                                                }
+                                                            >
+                                                                <button
+                                                                    type="button"
+                                                                    class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-red-600"
+                                                                >
+                                                                    Eliminar
+                                                                </button>
+                                                            </astro-destroy>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+        ) : (
+            <astro-sign-out data-logout={true}>
+                <div class="h-[50vh]">
+                    <div class="grid gap-4">
+                        <div
+                            id="success-alert"
+                            class="text-yellow-700 relative rounded border border-yellow-400 bg-yellow-100 px-4 py-3 transition-all delay-150 duration-300 ease-in-out"
+                            role="alert"
+                        >
+                            <strong class="font-bold">
+                                Este usuario no se encuentra autorizado para
+                                este módulo.
+                            </strong>
+                            <br />
+                            <span class="block sm:inline">
+                                Será cerrada la sesión de manera inmediata.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </astro-sign-out>
+        )
+    }
 </div>
 
 <!-- Create/ edit form code -->
@@ -110,6 +166,25 @@ const codes = await response.json();
 <script>
     import "@preline/collapse/index.js";
     import "@preline/overlay/index.js";
+</script>
+
+<script>
+    const signOutButton = document?.getElementById("signOutButton");
+    const { signOut } = await import("auth-astro/client");
+
+    signOutButton?.addEventListener("click", () => {
+        signOut();
+    });
+
+    class AstroSignOut extends HTMLElement {
+        connectedCallback() {
+            setTimeout(() => {
+                signOut();
+            }, 600);
+        }
+    }
+
+    customElements.define("astro-sign-out", AstroSignOut);
 </script>
 
 <script>
@@ -193,12 +268,10 @@ const codes = await response.json();
         connectedCallback() {
             const button = this.querySelector("button");
 
-            
             // Each time the button is clicked, update the count.
             button.addEventListener("click", () => {
-
                 if (confirm("¿Está seguro de elimminar este registro?")) {
-                    destroy(this.dataset.idcode)
+                    destroy(this.dataset.idcode);
                 }
             });
         }
