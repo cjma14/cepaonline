@@ -64,6 +64,14 @@
         }
     },
     {
+        "title": "TAF-OF mide",
+        "description": "La capacidad para convertir unidades fonológicas en grafemas.",
+        "img": {
+            "src": "/img/pruebas/B-9-1024x683.png",
+            "alt": "Interfaz de prueba TAF-OF"
+        }
+    },
+    {
         "title": "TAF-VL mide",
         "description": "La cantidad de palabras leídas por unidad de tiempo. La unidad de medida universal es palabras por minuto (p/min).",
         "img": {
