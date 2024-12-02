@@ -96,14 +96,6 @@
         }
     },
     {
-        "title": "Diagnosticos DEA",
-        "description": "TBA responde a los criterios diagnósticos de DEA según el DSM-5 y el Decreto 170 (Chile) al evaluar las siguientes áreas: La discrepancia significativa entre el rendimiento actual en una o más áreas académicas específicas (lectura, escritura o matemáticas) y las capacidades intelectuales generales.",
-        "img": {
-            "src": "/img/pruebas/B-15-1024x683.png",
-            "alt": "Interfaz de Diagnost icos DEA"
-        }
-    },
-    {
         "title": "Síntesis psicométrica",
         "description": "El sistema TBA permite obtener una síntesis psicométrica considerando el factor cognitivo, lo que permite inferir el nivel de desarrollo intelectual de la persona evaluada.",
         "img": {

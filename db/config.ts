@@ -7,6 +7,7 @@ const Certificate = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     name: column.text(),
+    deleted_at: column.date({ optional: true })
   }
 })
 
@@ -23,6 +24,7 @@ const Users = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     email: column.text(),
+    deleted_at: column.date({ optional: true })
   }
 })
 

@@ -94,7 +94,7 @@ const title: string = `Cursos y Diplomados`;
 
             <div class="mt-8 flex flex-col">
                 <small class="text-neutral-600"
-                    >Si tienes problemas, por favor <a
+                    >Ante cualquier problema, no dude en <a
                         href="/contact"
                         class="text-primary-500">Contáctanos</a
                     ></small
@@ -119,7 +119,7 @@ const title: string = `Cursos y Diplomados`;
                 </h3>
                 <h4
                     id="course"
-                    class="mb-4 text-balance text-center text-4xl font-extrabold tracking-tight text-neutral-700 dark:text-neutral-200"
+                    class="mb-4 flex flex-col gap-2 text-center text-2xl font-extrabold tracking-tight text-neutral-700 dark:text-neutral-200"
                 >
                     ---
                 </h4>
@@ -165,111 +165,96 @@ const title: string = `Cursos y Diplomados`;
 </MainLayout>
 <script>
     import DOMPurify from "dompurify";
-    import coursesDiplomas from "@data/codes-certificates/courses-diplomas.json";
-    import { log } from "node_modules/astro/dist/core/logger/core";
 
     const formSearch = document.querySelector("#form-search");
-    const inputSerach = document.querySelector(
-        "#search-code",
-    ) as HTMLInputElement;
+    const inputSearch = document.querySelector("#search-code") as HTMLInputElement;
     const notFoundSection = document.querySelector("#not-found");
     const codeSuccessSection = document.querySelector("#code-success");
     const errorLabel = document.querySelector("#error-label");
 
+    // Validación del formato del código de búsqueda
     const isInvalidFormat = (searchCodeValue) => {
         const regex = /^[a-zA-Z0-9]{3}-[a-zA-Z0-9]$/;
+        const isInvalid = !regex.test(searchCodeValue);
 
-        if (!regex.test(searchCodeValue)) {
-            errorLabel.innerHTML =
-                "El código que ingresó no cumple con el formato solicitado. Rectifique e intente nuevamente.";
-            return true;
-        }
-        errorLabel.innerHTML = "";
-        return false;
+        errorLabel.innerHTML = isInvalid 
+            ? "El código que ingresó no cumple con el formato solicitado. Rectifique e intente nuevamente." 
+            : "";
+            
+        return isInvalid;
     };
 
-    const getQueryParams = (search) => {
-        return new URLSearchParams({ search }).toString();
-    };
+    // Obtiene los parámetros de consulta
+    const getQueryParams = (search) => new URLSearchParams({ search }).toString();
 
+    // Función para buscar el código
     const findCode = async (searchCodeValue) => {
-
         const url = `./api/codes-certificates/get-codes-normal.json?${getQueryParams(searchCodeValue)}`;
 
         try {
-            const request = await fetch(url, {
-                method: "get",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-            });
-
-            // 3. Check for errors in the request
-            if (!request.ok) {
-                throw new Error(`HTTP error! status: ${request.status}`);
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            // 4. Parse JSON response (assuming successful fetch)
-            const response = await request.json();
-
-            // 5. Check if the response data has codes (length > 0)
-            if(response.data.length > 0) {
-                console.log(response.data[0].Certificate.name);
-                return response.data[0].Certificate.name;
-            }
-
-            return false
+            const data = await response.json();
+            return data.data.length > 0 ? data.data : false;
 
         } catch (error) {
-            // 6. Handle errors
             console.error("Error fetching codes:", error);
-            return false; // Or throw the error for further handling
+            return false; // Retorna false en caso de error
         }
     };
 
+    // Muestra la sección de "no encontrado"
     const setCodeNotFound = (searchCodeValue) => {
-        notFoundSection.classList.remove(...["hidden"]);
-        codeSuccessSection.classList.add(...["opacity-0", "hidden"]);
+        notFoundSection.classList.remove("hidden");
+        codeSuccessSection.classList.add("opacity-0", "hidden");
 
         setTimeout(() => {
-            notFoundSection.classList.remove(...["opacity-0"]);
+            notFoundSection.classList.remove("opacity-0");
             notFoundSection.classList.add("opacity-100");
         }, 100);
 
         notFoundSection.querySelector("#code").innerHTML = searchCodeValue;
     };
 
-    const setCodeSuccess = (searchCodeValue, certificateFound) => {
-        codeSuccessSection.classList.remove(...["hidden"]);
-        notFoundSection.classList.add(...["opacity-0", "hidden"]);
+    // Muestra la sección de éxito con los certificados encontrados
+    const setCodeSuccess = (searchCodeValue, certificatesFound) => {
+        codeSuccessSection.classList.remove("hidden");
+        notFoundSection.classList.add("opacity-0", "hidden");
 
         setTimeout(() => {
-            codeSuccessSection.classList.remove(...["opacity-0"]);
+            codeSuccessSection.classList.remove("opacity-0");
             codeSuccessSection.classList.add("opacity-100");
         }, 100);
 
+        const contentCourse = certificatesFound.map((certificate, index) => 
+            `<span class="mt-4">${index + 1}. ${certificate.Certificate.name}</span><br/>`
+        ).join('');
+
         codeSuccessSection.querySelector("#code").innerHTML = searchCodeValue;
-        codeSuccessSection.querySelector("#course").innerHTML = certificateFound;
+        codeSuccessSection.querySelector("#course").innerHTML = contentCourse;
     };
 
+    // Manejo del evento de envío del formulario
     formSearch.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const searchCodeValue = DOMPurify.sanitize(inputSerach.value);
-        inputSerach.value = "";
+        const searchCodeValue = DOMPurify.sanitize(inputSearch.value.trim());
+        inputSearch.value = "";
 
         if (isInvalidFormat(searchCodeValue)) {
             return;
         }
 
-        const certificateFound = await findCode(searchCodeValue);
+        const certificatesFound = await findCode(searchCodeValue);
 
-        if (!certificateFound) {
+        if (!certificatesFound) {
             setCodeNotFound(searchCodeValue);
         } else {
-            setCodeSuccess(searchCodeValue, certificateFound);
+            setCodeSuccess(searchCodeValue, certificatesFound);
         }
     });
-
    
 </script>
