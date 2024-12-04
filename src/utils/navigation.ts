@@ -17,7 +17,7 @@ const navBarLinks = [
       { name: "Certificados TBA", type: "basic", url: "/tba-certificates" },
     ]
   },
-  { name: "Sobre nosotros", url: "/about" },
+  { name: "Sobre nosotros", url: "/about-us" },
   { name: "Contacto", url: "/contact" }
 ];
 // An array of links for footer
