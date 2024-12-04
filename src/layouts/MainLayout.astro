@@ -40,6 +40,15 @@ We set the language of the page to English and add classes for scrollbar and scr
     <Meta meta={meta} structuredData={structuredData} />
     <!-- Define the title of the page -->
     <title>{title}</title>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-WQJECRL6TZ"></script>
+    <script is:inline type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WQJECRL6TZ');
+    </script>
 
     <script is:inline>
       // Script to handle dark mode. It will check if the theme is stored in localStorage or if dark theme is preferred by system settings
