@@ -20,7 +20,7 @@ interface Props {
         id="hs-dropdown-default"
         type="button"
         aria-label="Change language"
-        class="hs-dropdown-toggle inline-flex items-center gap-x-2 rounded-lg px-1.5 py-1.5 text-sm font-medium text-neutral-600 outline-none ring-zinc-500 transition duration-300 hover:bg-neutral-200 hover:text-primary-400 dark:border-neutral-700 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:bg-neutral-700 dark:hover:text-primary-300 dark:focus:outline-none"
+        class="hs-dropdown-toggle inline-flex items-center gap-x-2 rounded-lg md:px-1.5 py-1.5 text-sm font-medium text-neutral-600 outline-none ring-zinc-500 transition duration-300 md:hover:bg-neutral-200 hover:text-primary-400 dark:border-neutral-700 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:bg-neutral-700 dark:hover:text-primary-300 dark:focus:outline-none"
     >
         <p>{link.name}</p>
         <svg
@@ -37,7 +37,7 @@ interface Props {
     </button>
 
     <ul
-        class="hs-dropdown-menu duration !inset-[unset] !top-[85%] mt-2 hidden !transform-none rounded-lg bg-neutral-50 p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
+        class="hs-dropdown-menu !absolute z-10 md:!fixed duration !inset-[unset] !top-[85%] mt-2 hidden !transform-none rounded-lg bg-neutral-50 p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
         aria-labelledby="hs-dropdown-hover-event"
     >
         {
@@ -54,6 +54,7 @@ interface Props {
         }
     </ul>
 </div>
+
 
 <!--Import the necessary Dropdown plugin-->
 <!--https://preline.co/plugins/html/dropdown.html-->
